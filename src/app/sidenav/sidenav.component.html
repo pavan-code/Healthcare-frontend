@@ -1,0 +1,128 @@
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [(mode)]="sidebar" [(opened)]='opened'>
+        <div class="admin" *ngIf = "isAdmin">
+            <h2 style="margin: 15px 0; width: 100%; text-align: center;">
+              <b>Administrator</b>  
+            </h2>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item>
+                  <button (click)="sidenav.toggle()" mat-button 
+                      routerLink='/admin/dashboard'>              
+                    <b>Dashboard</b></button>
+              </mat-list-item>
+            </mat-list>
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> 
+                     <b>Doctor Management</b>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                    <button mat-button (click)="sidenav.toggle()" 
+                          routerLink='/admin/doctor-registration'>                
+                      <b>Add Doctor</b></button>
+        
+                    <button mat-button  (click)="sidenav.toggle()" 
+                    routerLink='/admin/all-doctors' type="button">
+                      <b>All Doctors</b></button>
+                  </mat-expansion-panel>
+        
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> <b>Patient management</b> </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list-item>
+                  <button mat-button (click)="sidenav.toggle()" 
+                      routerLink='/admin/all-patients'>
+                      <b>All Patients</b> </button>            
+                </mat-list-item>
+              </mat-expansion-panel>  
+            </mat-accordion>
+        </div>
+        <div class="doctor" *ngIf = "!isAdmin && isDoctor">
+            <h2 style="margin: 15px 0; width: 100%; text-align: center;">
+                <b>Welcome, Dr. {{username | titlecase}} </b>  
+            </h2>
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item>
+                <button (click)="sidenav.toggle()" mat-button 
+                      routerLink='/doctor/home'>   <mat-icon>home</mat-icon>     
+                <b>Home</b></button>
+              </mat-list-item>
+            </mat-list>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> 
+                   <b>My Appointments</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+                  <button mat-button (click)="sidenav.toggle()" 
+                        routerLink='/doctor/home/appointments/requests'>
+                    <b>Appointment Requests</b></button>
+      
+                  <button mat-button  (click)="sidenav.toggle()" 
+                  routerLink='/doctor/home/appointments/accepted' type="button">
+                    <b>Accepted Appointments</b></button>
+            </mat-expansion-panel>
+        </div>
+        <div class="patient" *ngIf = "!isAdmin && !isDoctor">
+            <h2 style="margin: 15px 0; width: 100%; text-align: center;">
+                <b>Welcome, {{username | titlecase}} </b>  
+            </h2>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item>
+                  <button (click)="sidenav.toggle()" mat-button 
+                      routerLink='/patient/home'> <mat-icon>home</mat-icon>             
+                    <b>Home</b></button>
+              </mat-list-item>             
+            </mat-list>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> 
+                   <b>My Appointments</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+                  <button mat-button (click)="sidenav.toggle()" 
+                        routerLink='/patient/home/appointments/requested'>
+                    <b>Requested Appointments</b></button>
+      
+                  <button mat-button  (click)="sidenav.toggle()" 
+                  routerLink='/patient/home/appointments/accepted' type="button">
+                    <b>Accepted Appointments</b></button>
+            </mat-expansion-panel>
+        </div>
+  
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+        <div  style="height: 0px;" id="top"></div>
+      
+        <mat-toolbar color="primary">
+            <button *ngIf = "show" mat-mini-fab (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
+            <button mat-button (click) = "home()">Health Care management</button>
+            <span style="flex: 1 auto;"></span>
+            <button routerLinkActive="active" class="buts" *ngIf = "!show" mat-button routerLink='/register'> <i class="fa fa-user-plus"></i> Register</button>
+            <button routerLinkActive="active" class="buts" *ngIf = "!show" mat-button routerLink='/login'><i class="fa fa-sign-in"></i> Login</button>
+            <button class="buts" *ngIf = "show" mat-button (click) = "logout()"><i class="fa fa-sign-out"></i> Logout</button>
+            <button mat-mini-fab class="profile"  [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngIf = "!show"routerLink='/register'> <mat-icon>input</mat-icon> Register</button>
+              <button mat-menu-item *ngIf = "!show" routerLink='/login'> <mat-icon>lock</mat-icon> Login</button>
+              <button mat-menu-item *ngIf = "show" (click) = "logout()"> <i class="fa fa-sign-out"></i> Logout</button>
+            </mat-menu>
+        </mat-toolbar>
+        
+        <!-- <div class="banner"></div> -->
+  
+        <div class="content">   
+            <router-outlet></router-outlet>        
+        </div>      
+        <app-footer></app-footer> 
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  

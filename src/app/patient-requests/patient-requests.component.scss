@@ -1,0 +1,43 @@
+.container {
+    min-height: 60vh;
+    height: auto;
+}
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+mat-card {
+    width: 100%;
+    height: auto;
+}
+.spin {
+    text-align: center;
+    font-size: large;
+    mat-spinner {
+        margin: 10px auto;
+    }
+}
+.pending {
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: #ffc107;
+}
+.approved {
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: green;
+}
+.rejected {
+    font-size: 14px;
+    color: red;
+    letter-spacing: 1px;
+}
+.slot, .date {    
+    font-size: larger;
+    span {
+        position: relative;
+        top: -5px;
+    }
+}

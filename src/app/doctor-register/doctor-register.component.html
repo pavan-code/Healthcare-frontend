@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Registering New Doctor..</p>
+    </div>
+    <div class="form" *ngIf = "show">
+        <!-- {{register.value | json}} -->
+        <form action="" class='form' [formGroup]="register">
+            <div class='login-information'>
+                <h2>Doctor Information</h2>
+                <div class="row">
+                    <div class='form-field col'>
+                        <label for="username">Doctor name</label>
+                        <input type="text" name="name" id="name" formControlName="name" class='form-control'>
+                        <small *ngIf = "formErrors.name">
+                            {{formErrors.name}}
+                        </small>
+                    </div>
+                    <div class='form-field col'>
+                        <label for="email">Email ID</label>
+                        <input type="email" name="email" id="email" formControlName="email" class="form-control">
+                        <small *ngIf = "formErrors.email">
+                            {{formErrors.email}}
+                        </small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-field col">
+                        <label for="mobile">Mobile No.</label>
+                        <input type="text" name="mobile" id="mobile" formControlName="mobile" class="form-control">
+                        <small *ngIf = "formErrors.mobile">
+                            {{formErrors.mobile}}
+                        </small>
+                    </div>
+                    <div class="form-field col">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" formControlName="password" class="form-control">
+                        <small *ngIf = "formErrors.password">
+                            {{formErrors.password}}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="donor-information">
+                <div class="row">          
+                    <div class="form-field col">
+                        <label for="gname">Specialisation</label>
+                        <input type="text" name="spec" id="spec" formControlName="specialisation" class="form-control">
+                        <small *ngIf = "formErrors.guardianName">
+                            {{formErrors.guardianName}}
+                        </small>
+                    </div>          
+                    <div class="form-group col">
+                        <label for="dob">Experience</label>
+                        <input class="form-control" type="number" name="exp" id="exp" formControlName="experience">
+                        <small *ngIf = "formErrors.dob">
+                            {{formErrors.dob}}
+                        </small>
+                    </div>                   
+                </div>
+            </div> 
+            <div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" class="form-control" formControlName='address'>
+                        <small *ngIf = "formErrors.address">
+                            {{formErrors.address}}
+                        </small>
+                    </div>
+                    <div class="form-group col">
+                        <label for="qualification">Qualification</label>
+                        <input type="text" name="qualification" id="qualification" class="form-control" formControlName='qualification'>
+                        <small *ngIf = "formErrors.qualification">
+                            {{formErrors.qualification}}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-information">
+                <!-- <h2>Contact Information</h2> -->
+                <div class="row">   
+                    <div class="form-group col">
+                        <label for="state">State</label>
+                        <select (change)="changeState($event)" name="state" id="state" class="form-control" formControlName="state">
+                            <option value="">--Select State--</option>
+                            <option value="{{state.name}}" *ngFor = "let state of states">
+                                {{state.name}}
+                            </option>                          
+                        </select>
+                        <small *ngIf = "formErrors.state">
+                            {{formErrors.state}}
+                        </small>
+                    </div>   
+                    <div class="form-group col">
+                        <label for="district">District</label>
+                        <select name="district" id="district" class="form-control" formControlName="district">
+                            <option value="" selected>--Select District--</option>
+                            <option value="{{district}}" *ngFor = "let district of districts">
+                                {{district}}
+                            </option>
+                        </select>
+                        <small *ngIf = "formErrors.district">
+                            {{formErrors.district}}
+                        </small>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="city">City or Village</label>
+                        <input class="form-control" type="text" name="city" id="city" formControlName="city">
+                        <small *ngIf = "formErrors.city">
+                            {{formErrors.city}}
+                        </small>
+                    </div>
+                    <div class="form-group col">
+                        <label for="pin">Pin code</label>
+                        <input class="form-control" type="number" name="pincode" id="pincode" formControlName="pincode">
+                        <small *ngIf = "formErrors.pincode">
+                            {{formErrors.pincode}}
+                        </small>
+                    </div>
+                   
+                </div>
+            </div>
+          
+            <button type='button' [disabled]="register.invalid" mat-raised-button (click)="getRegister()">Submit</button>
+        </form>
+    </div>
+</div>

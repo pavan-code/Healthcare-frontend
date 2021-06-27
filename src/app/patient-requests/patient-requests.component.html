@@ -1,0 +1,39 @@
+<div class='container'>
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting Requested Appointments...</p>
+    </div>
+    <div *ngIf = "show">
+        <h1>Requested Appointments</h1>
+        <h2 *ngIf= "pendingAppointments.length == 0">
+            No Pending appointments to display!
+        </h2>
+        <mat-grid-list [cols]='cols' gutterSize='5' rowHeight='2.2:1'>
+            <mat-grid-tile *ngFor = "let app of pendingAppointments">
+                <mat-card>
+                    <mat-card-content>
+                        <div class='head'>
+                            <h2> <b>Dr. {{app.doctorName}} </b> </h2>
+                            <span class="pending" *ngIf = "app.status == 'null'">Pending</span>
+                            <span class="approved" *ngIf = "app.status == 'true'">Approved</span>
+                            <span class="rejected" *ngIf = "app.status == 'false'">Rejected</span>
+                        </div>
+                        <div class="slot">
+                            <mat-icon>access_time</mat-icon>
+                            <span *ngIf = "app.slot1 == 'true'"> 10:00 AM to 11:00 AM</span>
+                            <span *ngIf = "app.slot2 == 'true'"> 11:00 AM to 12:00 AM</span>
+                            <span *ngIf = "app.slot3 == 'true'"> 1:00 PM to 2:00 PM</span>
+                            <span *ngIf = "app.slot4 == 'true'"> 2:00 PM to 3:00 PM</span>
+                        </div>
+                        <div class="date">
+                            <mat-icon>calendar_today</mat-icon>
+                            <span> {{app.date | date: 'mediumDate'}} </span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+       
+    </div>
+</div>

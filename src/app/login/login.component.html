@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="form" >
+        <h1>Login</h1>    
+        <div class="spin" *ngIf = "!hide">
+            <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+            <br>
+            <h3>Logging in.. Please wait</h3>
+        </div>
+        <form [formGroup]="login" *ngIf = "hide">
+            <div class="form-group">
+                <label for="username">Email ID</label>
+                <span class="asterisk">*</span>
+                <input type="text" name="email" id="email" class="form-control" formControlName="email" required>
+                <small *ngIf = "formErrors.email">
+                    {{formErrors.email}}
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <span class="asterisk">*</span>
+                <input type="password" name="password" id="password" class="form-control" formControlName="password" required>
+                <small *ngIf = "formErrors.password">
+                    {{formErrors.password}}
+                </small>
+            </div>
+            <div>
+                <span>New User? <a href="/register">Register here</a></span>
+            </div>
+            <button [disabled]="login.invalid" mat-stroked-button (click)="getLogin()">Login</button>
+        </form>
+    </div>
+</div>

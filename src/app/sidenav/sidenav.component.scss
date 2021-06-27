@@ -1,0 +1,53 @@
+.mat-toolbar {
+    height: 55px;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    z-index: 5;
+}
+.banner {
+    position: sticky;
+    top: 55px;
+    z-index: 4;
+    background-color: #14213d;
+    height: 125px;
+    width: 100%;
+   
+}
+ .mat-toolbar {
+     height: 55px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    
+}
+.content {
+    margin-top: 55px;
+}
+.container {
+    height: 100vh;
+}
+mat-sidenav {
+    width: 300px;
+}
+.active {
+    background-color: white;
+    color: black;
+}
+.mat-mini-fab {
+    background-color: black;
+}
+.profile {
+    display: none;
+}
+.buts {
+    display: block;
+}
+@media screen and (max-width: 500px) {
+    .profile {
+        display: block;
+    }
+    .buts {
+        display: none;
+    }
+}

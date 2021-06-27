@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting Appointment requests..</p>
+    </div>
+    <div class="table" *ngIf = "show">
+        <h1>All Appointment Requests </h1>
+        <h2 *ngIf = "appRequests.length == 0">No Appointment Requests from Patients to show!</h2>
+        <table class="mat-elevation-z8" mat-table [dataSource]='appRequests' *ngIf = "appRequests.length > 0">
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell data-label="S. No" *matCellDef = 'let patient; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Patient Name</th>
+                <td mat-cell data-label="Name" *matCellDef = 'let patient'>  {{patient.patientName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'date' >
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell data-label="Date" *matCellDef = 'let patient'>  {{patient.date | date: 'mediumDate'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'time' >
+                <th mat-header-cell *matHeaderCellDef> Slot </th>
+                <td mat-cell data-label="Time" *matCellDef = 'let patient'>
+                    <span class="badge badge-dark" *ngIf = "patient.slot1 == 'true'"> 10:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot2 == 'true'"> 11:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot3 == 'true'"> 1:00 PM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot4 == 'true'"> 2:00 PM </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'actions' >
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell data-label="Actions" *matCellDef = 'let patient; let i=index;'> 
+                    <button mat-button color='warn' (click)="reject(i)"><mat-icon>cancel</mat-icon> Reject</button>
+                    <button mat-stroked-button (click)="accept(i)" class='accept'><mat-icon>check</mat-icon>Accept</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+</div>

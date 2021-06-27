@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting Approved Appointments..</p>
+    </div>
+    <div class="table" *ngIf = "show">
+        <h1>All Approved Appointments </h1>
+        <h2 *ngIf = "approved.length == 0">No Appoved Appointments Scheduled!</h2>
+        <table mat-table [dataSource]='approved' *ngIf = "approved.length > 0">
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell *matCellDef = 'let patient; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Patient Name</th>
+                <td mat-cell *matCellDef = 'let patient'>  {{patient.patientName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'date' >
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef = 'let patient'>  {{patient.date | date: 'mediumDate'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'time' >
+                <th mat-header-cell *matHeaderCellDef> Slot </th>
+                <td mat-cell *matCellDef = 'let patient'>
+                    <span class="badge badge-dark" *ngIf = "patient.slot1 == 'true'"> 10:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot2 == 'true'"> 11:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot3 == 'true'"> 1:00 PM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot4 == 'true'"> 2:00 PM </span>
+                </td>
+            </ng-container>
+
+          
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+</div>

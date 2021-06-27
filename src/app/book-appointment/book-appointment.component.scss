@@ -1,0 +1,141 @@
+.container {
+    min-height: 90vh;
+    height: auto;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.chips .mat-chip-list-wrapper {
+    width: 800px;
+    
+    white-space: nowrap;
+    overflow-x: auto;
+}
+mat-card {
+    width: 800px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .details {
+        width: 400px;
+        button {
+            background-color: #ff4c15;
+            color: white;
+            left: 14px;
+        }
+        mat-card-actions {
+            margin: 0;
+        }
+    }
+    .appointment {
+        width: 400px;
+        margin: 10px;
+        padding: 10px;
+        .head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            mat-icon {
+                cursor: pointer;
+            }
+        }
+        .calendar {
+            
+            display: flex;
+            flex-direction: row;
+            
+            input {
+                width: 50%;
+                margin-right: 10px;
+            }
+        }
+        .slots {
+            padding: 8px 0;
+            mat-chip-list {
+                margin: 0 0 0 8px 0;
+            }
+            mat-chip {
+                background-color: #4bb543;
+                color: white;                
+            }
+            
+           
+        }
+    }
+}
+.mat-chip-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 8px 0;
+}
+.doctors {
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.spin {
+    text-align: center;
+    font-size: large;
+    mat-spinner {
+        margin: 10px auto;
+    }
+}
+ul li {
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+}
+.timings {
+    display: flex;
+    flex-direction: row;
+
+    .time {
+        display: flex;
+        flex-direction: column;
+        color: #ff4c15;
+    }
+}
+@media screen and (max-width: 768px) {
+    .doctors {
+        width: auto;
+        mat-card {
+            width: inherit;
+            margin: 0;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .details {
+                width: inherit;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                
+            }
+            .appointment {
+                width: inherit;
+                .calendar {
+                    width: inherit;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    input {
+                        width: inherit;
+                        margin: 0;
+                    }
+                }
+                .slots {
+                    .mat-chip-list {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}

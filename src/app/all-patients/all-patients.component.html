@@ -1,0 +1,49 @@
+<div class="contain">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting all patient details..</p>
+    </div>
+    <div class="table example-container" *ngIf = "show">
+        <h1>All Patient Details</h1>
+        <table class="mat-elevation-z8" mat-table [dataSource]='patients'>
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell data-label="#" *matCellDef = 'let patient; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Name</th>
+                <td mat-cell data-label="name" *matCellDef = 'let patient'>  {{patient.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'email'>
+                <th mat-header-cell *matHeaderCellDef> Email</th>
+                <td mat-cell data-label="email" *matCellDef = 'let patient'>  {{patient.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'mobile'>
+                <th mat-header-cell *matHeaderCellDef> Mobile</th>
+                <td mat-cell data-label="mobile" *matCellDef = 'let patient'>  {{patient.mobile}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'guardianName'>
+                <th mat-header-cell *matHeaderCellDef> Guardian</th>
+                <td mat-cell data-label="guardianName" *matCellDef = 'let patient'>  {{patient.guardianName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'dob'>
+                <th mat-header-cell *matHeaderCellDef> DOB</th>
+                <td mat-cell data-label="dob" *matCellDef = 'let patient'>  {{patient.dob | date:'mediumDate'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'address'>
+                <th mat-header-cell *matHeaderCellDef> Address</th>
+                <td mat-cell data-label="address" *matCellDef = 'let patient'>  {{patient.address}},  {{patient.city}}, {{patient.district}}, {{patient.state}}, {{patient.pincode}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+</div>

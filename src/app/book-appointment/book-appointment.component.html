@@ -1,0 +1,86 @@
+<div>
+    <img
+    src="../../assets//images/image2.jpg"
+    alt="Chicago"
+    style="width: 100%"
+  />
+</div>
+<div class="container">
+    <h2>Book Appointment</h2>
+    <div class="chips">
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip (click)="selectSpec(spec)" *ngFor = "let spec of specialisations">
+                {{spec}}
+            </mat-chip>
+        </mat-chip-list>          
+    </div>
+    <div class="selected" *ngIf = "selected">
+        <div class="content">
+            <h3>Selected specialisation: </h3>
+            <mat-chip *ngIf = "selected" [removable]='removable'> {{selected}} <mat-icon (click)="remove()" matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </div>
+    </div>
+    <div class="spin" *ngIf = "show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting doctors based on <span class="badge badge-dark"> {{selected}} </span> specialisation </p>
+    </div>
+    <div class="doctors" *ngIf = "!show">        
+        <mat-card *ngFor = "let doctor of doctors; let i=index;">
+            <div class='details'>
+                <mat-card-header>
+                    <img src="https://dummyimage.com/200x200/000" mat-card-avatar alt="">
+                    <mat-card-title>Dr. {{doctor.name | titlecase}} </mat-card-title>
+                    <mat-card-subtitle> {{doctor.specialisation}} </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li><b>Qualification: </b> {{doctor.qualification}} </li>
+                        <li><b>Experience: </b> {{doctor.experience}} years</li>
+                        <li><b>Location: </b> {{doctor.city}}, {{doctor.district}} </li>
+                        <li>
+                            <div class="timings">
+                                <mat-icon>calendar_today</mat-icon>
+                                <div class="time">
+                                    <span style="color: black;">MON-SAT</span>
+                                    <span>(10:00 AM - 12:00 PM, 1:00 PM - 3:00 PM)</span>
+                                </div>
+                            </div>                          
+                        </li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color='primary' (click)="book(i)"> <mat-icon>schedule</mat-icon> Book Appointment</button>
+                </mat-card-actions>
+            </div>
+            <div class="spin" *ngIf = "spin">
+                <mat-spinner diameter='80' strokeWidth='3'></mat-spinner>
+                <br>
+                <p>Booking Appointment on {{date | date: 'mediumDate'}} </p>
+            </div>
+            <div class="appointment" *ngIf = "display[i] && !spin">
+                <div class="head">
+                    <h3>Select time slot for appointment</h3>
+                    <mat-icon (click)='close(i)'>cancel</mat-icon>
+                </div>
+                <div class='calendar'>
+                    <input type="date" name="date" id="date" [min]="today" (change)="selectDate($event)" class="form-control">
+                    <button mat-stroked-button color="primary" (click)="checkStatus(doctor.id)" [disabled]="!date">Check status</button>
+                    <mat-spinner diameter='30' strokeWidth='3' *ngIf = "hide"></mat-spinner>
+                </div>
+                <br>
+                <div class="slots" *ngIf = "data">
+                    <h3>Available time slots on <b> {{date | date:'mediumDate'}} </b></h3>
+                    <mat-chip-list>
+                        <mat-chip *ngFor = "let time of times; let i=index" [disabled]='slots[i] == "true"' (click)="selectTime(time)">
+                            {{time}}
+                        </mat-chip>
+                    </mat-chip-list>
+                    <br><br>
+                    <button [disabled]="!slot" mat-stroked-button (click)="bookAppointment(doctor.id, doctor.name)">Confirm Appointment</button>
+                </div>        
+            </div>
+        </mat-card>
+    </div>
+</div>

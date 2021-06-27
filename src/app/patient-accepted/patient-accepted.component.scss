@@ -1,0 +1,40 @@
+.container {
+    min-height: 60vh;
+    height: auto;
+}
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spin {
+    text-align: center;
+    font-size: large;
+    mat-spinner {
+        margin: 10px auto;
+    }
+}
+mat-card {
+    width: 100%;
+    height: auto;
+}
+.pending {
+    font-size: 14px;
+    color: #ffc107;
+}
+.approved {
+    font-size: 14px;
+    color: green;
+}
+.rejected {
+    font-size: 14px;
+    columns: red;
+}
+.slot, .date {    
+    font-size: 14px;
+    span {
+        position: relative;
+        top: -5px;
+    }
+}

@@ -1,0 +1,30 @@
+.content {
+    height: 90vh;
+    .banner {
+        height: 50vh;
+        border: 1px solid black;
+    }
+    .item {
+        
+        position: relative;
+        button {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    .content {
+
+        position: relative;
+        .item {
+            display: flex;
+            flex-direction: column;
+            button {
+                position: relative;
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.container {
+    width: 96%;
+    min-height: 80vh;
+    .spin {
+        text-align: center;
+        mat-spinner {
+            margin: 0 auto;
+        }
+    }
+    .form {
+        h1 {
+            text-align: center;
+        }
+        width: 340px;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    small {
+        color: red;
+    }
+}
+::ng-deep .success {
+    background-color: #28a745;
+    font-size: large;
+}
+span.asterisk{
+    font-size: 16px;
+    color: red;
+}
+
+button {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 18px;
+}
+@media screen and (max-width:500px) {
+    .container {
+        width: 96%;
+        margin: 5px 10px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+}

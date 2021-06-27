@@ -1,0 +1,16 @@
+.mat-toolbar {
+    height: 55px;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    z-index: 5;
+}
+.banner {
+    position: sticky;
+    top: 55px;
+    z-index: 4;
+    background-color: #14213d;
+    height: 125px;
+    width: 100%;
+   
+}

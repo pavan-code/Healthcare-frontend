@@ -1,0 +1,62 @@
+<div class="contain">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting all Doctors..</p>
+    </div>
+    <div class="table" *ngIf = "show">
+        <h1>All Doctors </h1>
+        <h2 *ngIf = "doctors.length == 0">No Appointment Requests from doctors to show!</h2>
+        <table mat-table [dataSource]='doctors' *ngIf = "doctors.length > 0">
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell data-label="S.No" *matCellDef = 'let doctor; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Name</th>
+                <td mat-cell data-label="Name" *matCellDef = 'let doctor'>  {{doctor.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'email' >
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell data-label="Email" *matCellDef = 'let doctor'>  {{doctor.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'mobile' >
+                <th mat-header-cell *matHeaderCellDef> Mobile </th>
+                <td mat-cell data-label="Mobile" *matCellDef = 'let doctor'>  {{doctor.mobile}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'specialisation' >
+                <th mat-header-cell *matHeaderCellDef> Specialisation</th>
+                <td mat-cell data-label="Specialisation" *matCellDef = 'let doctor'>  {{doctor.specialisation}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'qualification' >
+                <th mat-header-cell *matHeaderCellDef> Qualification </th>
+                <td mat-cell data-label="Qualification" *matCellDef = 'let doctor'>  {{doctor.qualification}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'experience' >
+                <th mat-header-cell *matHeaderCellDef> Experience </th>
+                <td mat-cell data-label="Experience" *matCellDef = 'let doctor'>  {{doctor.experience}} yrs </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'address' >
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell data-label="address" *matCellDef = 'let doctor'>  {{doctor.address}}, {{doctor.city}}, {{doctor.district}}, {{doctor.state}}, {{doctor.pincode}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'actions' >
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell data-label="Actions" *matCellDef = 'let doctor; let i=index;'> 
+                    <button mat-button color='warn' (click)="deleteDoctor(doctor.id)"><mat-icon>delete</mat-icon> Delete</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+</div>

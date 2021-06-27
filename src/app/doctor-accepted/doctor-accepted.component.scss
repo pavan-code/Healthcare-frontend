@@ -1,0 +1,23 @@
+.container {
+    min-height: 70vh;
+    height: auto;
+}
+h1 {
+    text-align: center;
+}
+.spin {
+    font-size: large;
+    text-align: center;
+    mat-spinner {
+        margin: 10px auto;
+    }
+}
+table {
+    margin: 10px auto;
+    width: 60%;
+}
+@media screen and (max-width: 500px) {
+    table {
+        width: 100%;
+    }
+}
