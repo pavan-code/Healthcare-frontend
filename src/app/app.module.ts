@@ -48,6 +48,7 @@ import { PatientRequestsComponent } from './patient-requests/patient-requests.co
 import { PatientAcceptedComponent } from './patient-accepted/patient-accepted.component';
 import { DoctorRequestsComponent } from './doctor-requests/doctor-requests.component';
 import { DoctorAcceptedComponent } from './doctor-accepted/doctor-accepted.component';
+import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DoctorAcceptedComponent } from './doctor-accepted/doctor-accepted.compo
     PatientRequestsComponent,
     PatientAcceptedComponent,
     DoctorRequestsComponent,
-    DoctorAcceptedComponent
+    DoctorAcceptedComponent,
+    DoctorDetailsComponent
   ],
   imports: [
     BrowserModule,   
