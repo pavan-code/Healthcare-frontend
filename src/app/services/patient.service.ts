@@ -13,9 +13,11 @@ export class PatientService {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     }),
   };
+  baseURL: String = "https://8080-cdfbbaabecfdfadcdafcbbdcdcacbbfdbacbb.examlyiopb.examly.io/";
+
 
   getAllPatients() {
-    return this.http.get(`http://localhost:8080/all-patients`, this.httpOptions)
+    return this.http.get(`${this.baseURL}all-patients`, this.httpOptions)
   }
 
   getAppointments(doctorId: number, date: string) {
@@ -23,18 +25,18 @@ export class PatientService {
       "doctorId": doctorId,
       "date": date
     }
-    return this.http.post(`http://localhost:8080/get-appointments`, obj, this.httpOptions)
+    return this.http.post(`${this.baseURL}get-appointments`, obj, this.httpOptions)
   }
 
   addAppointment(appointment: any) {
-    return this.http.post(`http://localhost:8080/add-appointment`, appointment, this.httpOptions)
+    return this.http.post(`${this.baseURL}add-appointment`, appointment, this.httpOptions)
   }
 
   getPendingAppointments(patientId: number) {
-    return this.http.get(`http://localhost:8080/patient-pending-appointments?patientId=${patientId}`, this.httpOptions)
+    return this.http.get(`${this.baseURL}patient-pending-appointments?patientId=${patientId}`, this.httpOptions)
   }
 
   getApprovedAppointments(patientId: number) {
-    return this.http.get(`http://localhost:8080/patient-approved?patientId=${patientId}`, this.httpOptions)
+    return this.http.get(`${this.baseURL}patient-approved?patientId=${patientId}`, this.httpOptions)
   }
 }

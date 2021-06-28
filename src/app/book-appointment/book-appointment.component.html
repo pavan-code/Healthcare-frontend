@@ -16,7 +16,7 @@
     </div>
     <div class="selected" *ngIf = "selected">
         <div class="content">
-            <h3>Selected specialisation: </h3>
+            <h3>Selected specialisation: &nbsp; </h3>
             <mat-chip *ngIf = "selected" [removable]='removable'> {{selected}} <mat-icon (click)="remove()" matChipRemove>cancel</mat-icon>
             </mat-chip>
         </div>
@@ -65,7 +65,7 @@
                     <mat-icon (click)='close(i)'>cancel</mat-icon>
                 </div>
                 <div class='calendar'>
-                    <input type="date" name="date" id="date" [min]="today" (change)="selectDate($event)" class="form-control">
+                    <input type="date" placeholder="Select date" name="date" id="date" [min]="today" (change)="selectDate($event)" class="form-control">
                     <button mat-stroked-button color="primary" (click)="checkStatus(doctor.id)" [disabled]="!date">Check status</button>
                     <mat-spinner diameter='30' strokeWidth='3' *ngIf = "hide"></mat-spinner>
                 </div>

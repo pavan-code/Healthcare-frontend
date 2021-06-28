@@ -36,7 +36,7 @@ export class BookAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.slots = ["false", "false", "false", "false"];
     this.today = new Date().toISOString().slice(0,10);
-    alert(this.today)
+    
     this.patientId = JSON.parse(localStorage.getItem('patient') || '{}').id;
     this.patientName = JSON.parse(localStorage.getItem('patient') || '{}').name;
   }

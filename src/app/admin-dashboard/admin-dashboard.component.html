@@ -1,3 +1,17 @@
-<div class="container">
-    
+<div class="contain">
+    <div class="active">
+        <img
+        src="../../assets//images/image1.jpg"
+        alt="Chicago"
+        style="width: 100%"
+      />
+    </div>
+    <div class="cards">
+        <h2>Expertise in 10+ specialisations</h2>
+        <div class="chips">
+          <span class="badge badge-dark" *ngFor = "let spec of specialisations">
+            {{spec}}
+          </span>
+        </div>
+    </div>
 </div>

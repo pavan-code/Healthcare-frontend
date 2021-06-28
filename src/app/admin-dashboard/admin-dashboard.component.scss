@@ -1,0 +1,21 @@
+.contain {
+    min-height: 80vh;
+}
+h2 {
+    text-align: center;
+}
+.chips {
+    margin: 3px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    // justify-content: space-around;
+    overflow-x: auto;
+}
+span {
+    width: auto;
+    padding: 5px 8px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 2px 0 2px 4px;
+}

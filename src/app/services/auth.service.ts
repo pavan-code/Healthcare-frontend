@@ -12,6 +12,7 @@ export class AuthService {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     }),
   };
+  baseURL: String = "https://8080-cdfbbaabecfdfadcdafcbbdcdcacbbfdbacbb.examlyiopb.examly.io/";
   isLoggedIn() {
     const token = localStorage.getItem('token')
     if(token)
@@ -35,15 +36,15 @@ export class AuthService {
   }
   
   login(data: any) {
-    return this.http.post('http://localhost:8080/login', data);
+    return this.http.post(`${this.baseURL}login`, data);
   }
 
   registerDoctor(details: any) {
     console.log(details);
-    return this.http.post('http://localhost:8080/registerDoctor', details);
+    return this.http.post(`${this.baseURL}registerDoctor`, details);
   }
   registerPatient(details: any) {
     console.log(details);
-    return this.http.post('http://localhost:8080/registerPatient', details);
+    return this.http.post(`${this.baseURL}registerPatient`, details);
   }
 }
