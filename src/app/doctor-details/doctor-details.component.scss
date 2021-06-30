@@ -1,0 +1,32 @@
+.contain {
+    padding: 10px 0;
+    min-height: 70vh;
+    height: auto;
+    .spin {
+        text-align: center;
+        font-size: large;
+        mat-spinner {
+            margin: 10px auto;
+        }
+    }
+}
+table {
+    margin: 10px auto;
+    width: 70%;
+  }
+h1, h2 {
+    text-align: center;
+}
+.error {
+    padding: 5px 10px;
+    background-color: #777;
+    color: white;
+    // width: fit-content;
+    margin: 0 auto;
+    
+}
+@media screen and (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+}

@@ -52,11 +52,12 @@
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell data-label="Actions" *matCellDef = 'let doctor; let i=index;'> 
                     <button mat-button color='warn' (click)="deleteDoctor(doctor.id)"><mat-icon>delete</mat-icon> Delete</button>
+                    <button mat-fab-mini mat-button routerLink="/admin/all-doctors/doctor/{{doctor.id}}"><mat-icon>launch</mat-icon></button>
                 </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
-            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+            <tr  mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
         </table>
     </div>
 </div>

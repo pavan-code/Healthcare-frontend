@@ -54,7 +54,7 @@
                     <button mat-raised-button color='primary' (click)="book(i)"> <mat-icon>schedule</mat-icon> Book Appointment</button>
                 </mat-card-actions>
             </div>
-            <div class="spin" *ngIf = "spin">
+            <div class="spin" *ngIf = "display[i] && spin">
                 <mat-spinner diameter='80' strokeWidth='3'></mat-spinner>
                 <br>
                 <p>Booking Appointment on {{date | date: 'mediumDate'}} </p>

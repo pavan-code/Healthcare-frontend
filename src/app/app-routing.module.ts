@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,8 @@ const routes: Routes = [
     path: 'doctor/home/appointments/requests', component: DoctorRequestsComponent
   }, {
     path: 'doctor/home/appointments/accepted', component: DoctorAcceptedComponent
+  }, {
+    path: 'admin/all-doctors/doctor/:id', component: DoctorDetailsComponent, canActivate: [AuthGuard]
   }
 ];
 

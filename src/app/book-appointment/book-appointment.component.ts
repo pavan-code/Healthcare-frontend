@@ -49,7 +49,7 @@ export class BookAppointmentComponent implements OnInit {
     .subscribe((data: any) => {
       this.display = new Array(data.length).fill(false);
       this.show = false;
-      console.log(data)
+      // console.log(data)
       this.doctors = data;
     })
   }
@@ -78,7 +78,7 @@ export class BookAppointmentComponent implements OnInit {
   }
   checkStatus(doctorId: number) {
     // alert(this.slot + "  " + this.date)
-    console.log(this.date + " " + doctorId)
+    // console.log(this.date + " " + doctorId)
     this.getAppointments(doctorId, this.date)
   }
   getAppointments(doctorId: number, date: string) {
@@ -87,7 +87,7 @@ export class BookAppointmentComponent implements OnInit {
     .subscribe((data: any) => {
       this.hide = false
       this.data = true
-      console.log(data)
+      // console.log(data)
       if(data.length > 0) {
         this.slots[0] = data[0].slot1;
         this.slots[1] = data[0].slot2;
@@ -127,7 +127,7 @@ export class BookAppointmentComponent implements OnInit {
     .subscribe((data: any) => {
       this.data = false;
       this.spin = false;
-      console.log(data)
+      // console.log(data)
       this.openSnackbar(data.message, 'close')
       location.href = "patient/home/appointments/requested";
     })

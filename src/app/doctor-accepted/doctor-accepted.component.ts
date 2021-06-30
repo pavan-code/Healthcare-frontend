@@ -23,7 +23,7 @@ export class DoctorAcceptedComponent implements OnInit {
     .subscribe((data: any) => {
       this.show = true;      
       this.approved = data;
-      console.log(this.approved)
+      // console.log(this.approved)
     })
   }
 

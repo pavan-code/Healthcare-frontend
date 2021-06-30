@@ -35,7 +35,7 @@ export class AllPatientsComponent implements OnInit {
     .subscribe((data: any) => {
       this.show = true;
       this.patients = data;
-      console.log(this.patients)
+      // console.log(this.patients)
     }, err => {      
       console.log(err)
       // alert('error in getting all patients data'+ err)

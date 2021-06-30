@@ -37,7 +37,7 @@ export class PatientRequestsComponent implements OnInit {
     this.patientService.getPendingAppointments(this.patientId)
     .subscribe((data: any) => {
       this.show = true;
-      console.log(data)
+      // console.log(data)
       this.pendingAppointments = data;
     })
   }

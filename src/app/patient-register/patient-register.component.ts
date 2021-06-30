@@ -137,11 +137,11 @@ export class PatientRegisterComponent implements OnInit {
   }
   getRegister() {
     this.show = false;
-    console.log(this.register.value)
+    // console.log(this.register.value)
     this.authService.registerPatient(this.register.value)
     .subscribe((res:any) => {
       this.show = true;
-      console.log(res);
+      // console.log(res);
       this.openSnackbar(res.message, 'close')
       setTimeout(() => {
         location.href = "login"

@@ -23,7 +23,7 @@ export class AllDoctorsComponent implements OnInit {
     this.doctorService.getAllDoctors()
     .subscribe((data: any) => {
       this.show = true;
-      console.log(data)
+      // console.log(data)
       this.doctors = data;
     })
   }

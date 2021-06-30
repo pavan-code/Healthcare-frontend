@@ -37,7 +37,7 @@ export class PatientAcceptedComponent implements OnInit {
     this.patientService.getApprovedAppointments(this.patientId)
     .subscribe((data: any) => {
       this.show = true;
-      console.log(data)
+      // console.log(data)
       this.approvedAppointments = data;
     })
   }

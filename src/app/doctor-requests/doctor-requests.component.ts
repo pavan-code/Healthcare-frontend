@@ -24,7 +24,7 @@ export class DoctorRequestsComponent implements OnInit {
     this.doctorService.appointmentRequests(this.doctorId)
     .subscribe((data: any) => {      
       this.show = true;      
-      console.log(data);
+      // console.log(data);
       let n = data.length;
       for(var i=0; i<n; i++) {
         if(data[i].status != 'false')
@@ -43,10 +43,10 @@ export class DoctorRequestsComponent implements OnInit {
   reject(i: number) {
     let rejected = this.appRequests[i];
     rejected.status = "false";
-    console.log(rejected);
+    // console.log(rejected);
     this.doctorService.rejectAppointment(rejected)
     .subscribe((data: any) => {
-      console.log(data)
+      // console.log(data)
       this.openSnackbar(data.message, '')
       setTimeout(() => {
         location.reload();
@@ -57,13 +57,13 @@ export class DoctorRequestsComponent implements OnInit {
   accept(i: number) {
     let accepted = this.appRequests[i];
     accepted.status = "true";
-    console.log(accepted);
+    // console.log(accepted);
     this.doctorService.acceptAppointment(accepted)
     .subscribe((data: any) => {
-      console.log(data)
+      // console.log(data)
       this.doctorService.deleteAppointment(data)
       .subscribe((data: any) => {
-        console.log(data)
+        // console.log(data)
         this.openSnackbar(data.message, '')
          setTimeout(() => {
          location.reload();

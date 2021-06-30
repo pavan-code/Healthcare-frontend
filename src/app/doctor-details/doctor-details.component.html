@@ -1,1 +1,94 @@
-<p>doctor-details works!</p>
+<div class="contain">
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting pending appointments..</p>
+    </div>
+    <div class="table" *ngIf = "show">
+        <h1>Pending Appointment Requests </h1>
+        <h2 class="error" *ngIf = "pending.length == 0">No Pending Appointment Requests</h2>
+        <table class="mat-elevation-z8" mat-table [dataSource]='pending' *ngIf = "pending.length > 0">
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell data-label="S. No" *matCellDef = 'let patient; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Patient Name</th>
+                <td mat-cell data-label="Name" *matCellDef = 'let patient'>  {{patient.patientName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'date' >
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell data-label="Date" *matCellDef = 'let patient'>  {{patient.date | date: 'mediumDate'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'time' >
+                <th mat-header-cell *matHeaderCellDef> Slot </th>
+                <td mat-cell data-label="Time" *matCellDef = 'let patient'>
+                    <span class="badge badge-dark" *ngIf = "patient.slot1 == 'true'"> 10:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot2 == 'true'"> 11:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot3 == 'true'"> 1:00 PM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot4 == 'true'"> 2:00 PM </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'status' >
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell data-label="Status" *matCellDef = 'let patient'> 
+                    <span style="color: red;" *ngIf = "patient.status == 'false'">Rejected</span>    
+                    <span style="color: orange;" *ngIf = "patient.status == 'null'">Pending</span>                    
+                </td>
+            </ng-container>
+           
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+
+    <div class="spin" *ngIf = "!show">
+        <mat-spinner diameter='100' strokeWidth='3'></mat-spinner>
+        <br>
+        <p>Getting Approved appointments..</p>
+    </div>
+    <div class="table" *ngIf = "show">
+        <h1>Approved Appointment Requests </h1>
+        <h2 class="error" *ngIf = "approved.length == 0">No Approved Appointments</h2>
+        <table class="mat-elevation-z8" mat-table [dataSource]='approved' *ngIf = "approved.length > 0">
+            <ng-container matColumnDef = 'index' >
+                <th mat-header-cell *matHeaderCellDef> S.no</th>
+                <td mat-cell data-label="S. No" *matCellDef = 'let patient; let i=index;'>  {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'name' >
+                <th mat-header-cell *matHeaderCellDef> Patient Name</th>
+                <td mat-cell data-label="Name" *matCellDef = 'let patient'>  {{patient.patientName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'date' >
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell data-label="Date" *matCellDef = 'let patient'>  {{patient.date | date: 'mediumDate'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'time' >
+                <th mat-header-cell *matHeaderCellDef> Slot </th>
+                <td mat-cell data-label="Time" *matCellDef = 'let patient'>
+                    <span class="badge badge-dark" *ngIf = "patient.slot1 == 'true'"> 10:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot2 == 'true'"> 11:00 AM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot3 == 'true'"> 1:00 PM </span>
+                    <span class="badge badge-dark" *ngIf = "patient.slot4 == 'true'"> 2:00 PM </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef = 'status' >
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell data-label="Status" *matCellDef = 'let patient'>   
+                    <span style="color: green;" *ngIf = "patient.status == 'true'">Approved</span>    
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+            <tr mat-row *matRowDef='let row; columns: displayedColumns; let i=index;'></tr>
+        </table>
+    </div>
+</div>

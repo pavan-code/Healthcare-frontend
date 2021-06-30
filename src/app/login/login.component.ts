@@ -13,19 +13,19 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private snackbar: MatSnackBar
-  ) {}
+  ) { }
 
   login!: FormGroup;
   hide: boolean = true;
 
   ngOnInit(): void {
     let user = localStorage.getItem('user')
-    if(this.authService.isLoggedIn() && user == 'patient')
-      location.href="patient/home"
-    else if(this.authService.isLoggedIn() && user == 'doctor')
-      location.href="doctor/home"
-    else if(this.authService.isLoggedIn() && user == 'admin')
-      location.href="admin/dashboard"
+    if (this.authService.isLoggedIn() && user == 'patient')
+      location.href = "patient/home"
+    else if (this.authService.isLoggedIn() && user == 'doctor')
+      location.href = "doctor/home"
+    else if (this.authService.isLoggedIn() && user == 'admin')
+      location.href = "admin/dashboard"
     this.createForm();
   }
 
@@ -63,32 +63,36 @@ export class LoginComponent implements OnInit {
     this.hide = false;
     this.authService.login(this.login.value).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.hide = true;
-        localStorage.setItem('token', res.jwt)
-        this.openSnackbar(res.message, '')
-        if(res.patient) {
-          localStorage.setItem('patient', JSON.stringify(res.patient))
-          localStorage.setItem('user', 'patient')
-          setTimeout(() => {
-            location.href = 'patient/home'
-          }, 2500)
-        }
-        else if(res.doctor && res.doctor.role == 'ROLE_DOCTOR') {
-          localStorage.setItem('doctor', JSON.stringify(res.doctor))
-          localStorage.setItem('user', 'doctor')
-          setTimeout(() => {
-            location.href = 'doctor/home'
-          }, 2500)
-        } 
-        else {
-          localStorage.setItem('admin', JSON.stringify(res.doctor))
-          localStorage.setItem('user', 'admin')
-          setTimeout(() => {
-            location.href = 'admin/dashboard'
-          }, 2500);
-        }
+        if (res.jwt == null) {
+          this.openSnackbar(res.message, '')
+        } else {
+          localStorage.setItem('token', res.jwt)
+          this.openSnackbar(res.message, '')
+          if (res.patient) {
+            localStorage.setItem('patient', JSON.stringify(res.patient))
+            localStorage.setItem('user', 'patient')
+            setTimeout(() => {
+              location.href = 'patient/home'
+            }, 2500)
+          }
+          else if (res.doctor && res.doctor.role == 'ROLE_DOCTOR') {
+            localStorage.setItem('doctor', JSON.stringify(res.doctor))
+            localStorage.setItem('user', 'doctor')
+            setTimeout(() => {
+              location.href = 'doctor/home'
+            }, 2500)
+          }
+          else {
+            localStorage.setItem('admin', JSON.stringify(res.doctor))
+            localStorage.setItem('user', 'admin')
+            setTimeout(() => {
+              location.href = 'admin/dashboard'
+            }, 2500);
+          }
 
+        }
       },
       (err) => console.log(err)
     );
